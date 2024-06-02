@@ -1,12 +1,8 @@
-import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import TodoList from "./Components/TodoList";
-import { useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import { authState } from "./store/authState.js";
 import useSWR from "swr";
 
 function App() {
@@ -31,7 +27,7 @@ const fetcher = ({ url }: { url: string }) =>
   }).then((res) => res.json());
 
 function InitState() {
-  const { data, error, isLoading } = useSWR(
+  const { data } = useSWR(
     { url: "https://ts-todo-app-7qg5.onrender.com/auth/me" },
     fetcher
   );
@@ -39,34 +35,34 @@ function InitState() {
   return <></>;
 }
 
-function InitState2() {
-  const setAuth = useSetRecoilState(authState);
-  const navigate = useNavigate();
+// function InitState2() {
+//   const setAuth = useSetRecoilState(authState);
+//   const navigate = useNavigate();
 
-  const init = async () => {
-    const token = localStorage.getItem("token");
-    try {
-      const response = await fetch(
-        "https://ts-todo-app-7qg5.onrender.com/auth/me",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      const data = await response.json();
-      if (data.username) {
-        setAuth({ token: data.token, username: data.username });
-        navigate("/todos");
-      } else {
-        navigate("/login");
-      }
-    } catch (e) {
-      navigate("/login");
-    }
-  };
-  useEffect(() => {
-    init();
-  }, []);
-  return <></>;
-}
+//   const init = async () => {
+//     const token = localStorage.getItem("token");
+//     try {
+//       const response = await fetch(
+//         "https://ts-todo-app-7qg5.onrender.com/auth/me",
+//         {
+//           headers: { Authorization: `Bearer ${token}` },
+//         }
+//       );
+//       const data = await response.json();
+//       if (data.username) {
+//         setAuth({ token: data.token, username: data.username });
+//         navigate("/todos");
+//       } else {
+//         navigate("/login");
+//       }
+//     } catch (e) {
+//       navigate("/login");
+//     }
+//   };
+//   useEffect(() => {
+//     init();
+//   }, []);
+//   return <></>;
+// }
 
 export default App;
