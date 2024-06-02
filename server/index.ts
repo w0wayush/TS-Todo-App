@@ -1,5 +1,6 @@
 import express from "express";
-import mongoose from "mongoose";
+import env from "dotenv";
+import dbConnect from "./db/db";
 const app = express();
 
 const port = 3000;
@@ -12,9 +13,8 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/todo", todoRoutes);
 
+dbConnect();
+
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`App listening at http://localhost:${port}`);
 });
-mongoose.connect(
-  "mongodb+srv://pandeysmokey:EKODbRbTVPbd32Be@cluster0.asdhhnf.mongodb.net/todoTS"
-);
