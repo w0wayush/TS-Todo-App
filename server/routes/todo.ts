@@ -9,7 +9,7 @@ interface CreateTodoInput {
   description: string;
 }
 
-router.post("/todos", authenticateJwt, (req, res) => {
+router.post("/createTodo", authenticateJwt, (req, res) => {
   try {
     const parsedInput = todoInputProps.safeParse(req.body);
     if (!parsedInput.success) {
