@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
-import { authState } from "../store/authState.js";
-import { useRecoilValue } from "recoil";
 import { Button, Card, TextField, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
 interface Todo {
   _id: string;
@@ -17,8 +14,6 @@ const TodoList = () => {
   const [todos, setTodos] = useState<TodoArray>([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const authStateValue = useRecoilValue(authState);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const getTodos = async () => {
@@ -42,7 +37,7 @@ const TodoList = () => {
       return;
     }
     const response = await fetch(
-      "https://ts-todo-app-7qg5.onrender.com/todo/todos",
+      "https://ts-todo-app-7qg5.onrender.com/todo/createTodo",
       {
         method: "POST",
         headers: {
@@ -61,6 +56,8 @@ const TodoList = () => {
 
     newTodos.push(data);
     setTodos(newTodos);
+    setTitle("");
+    setDescription("");
   };
 
   const markDone = async (id: string) => {
@@ -98,46 +95,17 @@ const TodoList = () => {
       <div
         style={{
           display: "flex",
-          justifyContent: "space-between",
-          marginLeft: "25px",
-          marginRight: "25px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            gap: "8px",
-            alignItems: "center",
-          }}
-        >
-          <h2>Welcome </h2>
-          <h3>{authStateValue.username}</h3>
-        </div>
-        <div style={{ marginTop: 25, marginLeft: 20 }}>
-          <Button
-            variant="outlined"
-            onClick={() => {
-              localStorage.removeItem("token");
-              navigate("/login");
-            }}
-          >
-            Logout
-          </Button>
-        </div>
-      </div>
-      <div
-        style={{
-          display: "flex",
           justifyContent: "center",
           alignItems: "center",
           minHeight: "50vh",
+          marginTop: "25px",
         }}
       >
         <Card
           style={{
             width: "100%",
             maxWidth: "400px",
-            padding: "35px",
+            padding: "25px",
             boxShadow:
               "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
           }}
@@ -208,6 +176,7 @@ const TodoList = () => {
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
+              marginBottom: "50px",
             }}
             key={todo._id}
           >

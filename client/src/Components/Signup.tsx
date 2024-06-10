@@ -29,7 +29,7 @@ const Signup = () => {
   return (
     <div
       style={{
-        height: "100vh",
+        height: "75vh",
         width: "100vw",
         display: "flex",
         justifyContent: "center",
