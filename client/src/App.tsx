@@ -2,7 +2,7 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  useNavigate,
+  // useNavigate,
 } from "react-router-dom";
 import { RecoilRoot, useSetRecoilState } from "recoil";
 import Login from "./Components/Login";
@@ -11,7 +11,7 @@ import TodoList from "./Components/TodoList";
 import useSWR from "swr";
 import Home from "./Components/Home";
 import Appbar from "./Components/Appbar";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { authState } from "./store/authState";
 import "./App.css";
 

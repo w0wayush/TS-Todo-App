@@ -2,7 +2,6 @@ import { Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { authState } from "../store/authState";
-import logo from "../../public/logo.png";
 
 const Appbar = () => {
   const authStateValue = useRecoilValue(authState);
@@ -29,7 +28,6 @@ const Appbar = () => {
           >
             <img
               src="https://cdn-icons-png.flaticon.com/512/10023/10023840.png"
-              href="Todo logo"
               width={"45px"}
             ></img>
             <Typography
@@ -85,7 +83,6 @@ const Appbar = () => {
           >
             <img
               src="https://cdn-icons-png.flaticon.com/512/10023/10023840.png"
-              href="Todo logo"
               width={"50px"}
               height={"57px"}
             ></img>
