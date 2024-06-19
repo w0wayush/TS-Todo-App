@@ -16,13 +16,16 @@ const Signup = () => {
         body: JSON.stringify({ username, password }),
       }
     );
+    // console.log(response.body);
     // Todo: Create a type for the response that you get back from the server
     const data = await response.json();
     if (data.token) {
       localStorage.setItem("token", data.token);
       navigate("/todos");
     } else {
-      alert("Error while signing up");
+      alert(
+        "Error while signing up. Either wrong email or password length is too short"
+      );
     }
   };
 

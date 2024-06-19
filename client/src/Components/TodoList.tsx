@@ -166,58 +166,66 @@ const TodoList = () => {
           justifyContent: "center",
         }}
       >
-        {todos.map((todo) => (
-          <Card
-            style={{
-              width: "300px",
-              padding: "20px",
-              boxShadow:
-                "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              marginBottom: "50px",
-            }}
-            key={todo._id}
-          >
-            <div>
-              <Typography variant="h6" style={{ textAlign: "center" }}>
-                {todo.title}
-              </Typography>
-              <Typography
-                variant="subtitle1"
-                style={{ textAlign: "center", marginTop: "10px" }}
+        {todos.length > 0 ? (
+          <div>
+            {todos.map((todo) => (
+              <Card
+                style={{
+                  width: "300px",
+                  padding: "20px",
+                  boxShadow:
+                    "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  marginBottom: "50px",
+                }}
+                key={todo._id}
               >
-                {todo.description}
-              </Typography>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-around",
-                marginTop: "20px",
-              }}
-            >
-              {todo.done ? (
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  onClick={() => deleteTodo(todo._id)}
+                <div>
+                  <Typography variant="h6" style={{ textAlign: "center" }}>
+                    {todo.title}
+                  </Typography>
+                  <Typography
+                    variant="subtitle1"
+                    style={{ textAlign: "center", marginTop: "10px" }}
+                  >
+                    {todo.description}
+                  </Typography>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    marginTop: "20px",
+                  }}
                 >
-                  Done
-                </Button>
-              ) : (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => markDone(todo._id)}
-                >
-                  Mark as Done
-                </Button>
-              )}
-            </div>
-          </Card>
-        ))}
+                  {todo.done ? (
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={() => deleteTodo(todo._id)}
+                    >
+                      Done
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => markDone(todo._id)}
+                    >
+                      Mark as Done
+                    </Button>
+                  )}
+                </div>
+              </Card>
+            ))}
+          </div>
+        ) : (
+          <div>
+            <Typography> No Todos Created Yet</Typography>
+          </div>
+        )}
       </div>
     </div>
   );

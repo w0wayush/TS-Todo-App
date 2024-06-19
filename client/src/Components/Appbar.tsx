@@ -56,7 +56,7 @@ const Appbar = () => {
                   navigate("/login");
                 }}
               >
-                Login
+                Signin
               </Button>
             </div>
           </div>
